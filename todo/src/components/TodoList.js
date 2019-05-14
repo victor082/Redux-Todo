@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {addTask, toggleTask} from '../actions';
+import {addTask, toggleTask, deleteTask} from '../actions';
 
 class TodoList extends React.Component {
     state = {
@@ -22,9 +22,14 @@ class TodoList extends React.Component {
         this.props.toggleTask(id);
     }
 
+    deleteTask = (completeStatus) => {
+        this.props.deleteTask(completeStatus);
+    }
+
     render() {
         return (
             <React.Fragment>
+                <button className="delete-button" onClick={this.deleteTask}>Delete Selected</button>
                 <div className="todo-list">
                     {this.props.tasks &&
                         this.props.tasks.map((task) => (
@@ -54,5 +59,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { addTask, toggleTask }
+    { addTask, toggleTask, deleteTask}
 )(TodoList);

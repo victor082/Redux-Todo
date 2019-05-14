@@ -16,8 +16,10 @@ function App() {
         <div className="App">
             <header>
                 <Title title="title"/>
-                <TodoList />
             </header>
+            <div className="mainBody">
+            <TodoList />
+            </div>
         </div>
     )
 }

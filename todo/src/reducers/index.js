@@ -1,10 +1,10 @@
-import { CHANGE_TITLE, ADD_TASK, TOGGLE_TASK } from '../actions';
+import { CHANGE_TITLE, ADD_TASK, TOGGLE_TASK, DELETE_TASK } from '../actions';
 
 const initialState = {
   title: 'Click here to name your List!',
   tasks: [
-    { task: 'Wash the dishes', completeStatus: true, id: 8695433 },
-    { task: 'Vacuum the lawn', completeStatus: false, id: 4934312}
+    { task: 'Open the fridge', completeStatus: true, id: 8695433 },
+    { task: 'Eat the food', completeStatus: false, id: 4934312}
   ]
 };
 
@@ -20,7 +20,7 @@ export const reducer = (state = initialState, action) => {
       ...state,
       tasks: [
         ...state.tasks,
-        { task: action.payload, completeStatus: false }
+        { task: action.payload, completeStatus: false, id: Date.now()}
       ]
     }
     case TOGGLE_TASK:
@@ -33,8 +33,13 @@ export const reducer = (state = initialState, action) => {
             completeStatus: !task.completeStatus
           };
         }
-        return task
+        return task;
       })
+    }
+    case DELETE_TASK:
+    return {
+      ...state,
+      tasks: state.tasks.filter(task => !task.completeStatus)
     }
 
     default:
