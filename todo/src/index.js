@@ -5,6 +5,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { reducer } from './reducers';
 import Title from './components/Title';
+import TodoList from './components/TodoList';
 
 import './index.css';
 
@@ -15,6 +16,7 @@ function App() {
         <div className="App">
             <header>
                 <Title title="title"/>
+                <TodoList />
             </header>
         </div>
     )
